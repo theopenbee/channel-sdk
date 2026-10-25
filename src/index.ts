@@ -107,6 +107,9 @@ export function defineChannel(def: ChannelDefinition, io?: ChannelIO): void {
     dispatch: (message) => {
       void peer.notify("inbound", message);
     },
+    migrateChat: (fromChatId, toChatId) => {
+      void peer.notify("migrate_chat", { from_chat_id: fromChatId, to_chat_id: toChatId });
+    },
     saveMedia: async (data, ext) => {
       const suffix = ext ? (ext.startsWith(".") ? ext : "." + ext) : "";
       const path = join(p.media_dir, `${Date.now()}-${randomBytes(4).toString("hex")}${suffix}`);

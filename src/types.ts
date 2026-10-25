@@ -66,6 +66,7 @@ export interface ChannelContext {
   mediaDir: string;
   openbeeVersion: string;
   dispatch(message: InboundMessage): void;
+  migrateChat(fromChatId: string, toChatId: string): void;
   saveMedia(data: Uint8Array, ext: string): Promise<string>;
   log: Logger;
 }

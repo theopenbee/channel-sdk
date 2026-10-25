@@ -22,6 +22,9 @@ defineChannel({
         signal.addEventListener("abort", () => reject(new Error("aborted")));
       });
     }
+    if (process.env.MIGRATE) {
+      ctx.migrateChat(msg.chat_id, "moved");
+    }
     let text = msg.content ?? "";
     if (process.env.SAVE_MEDIA) {
       const path = await ctx.saveMedia(Buffer.from("hello media"), "txt");

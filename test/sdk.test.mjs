@@ -173,3 +173,13 @@ test("saveMedia writes into mediaDir", async () => {
   assert.equal(readFileSync(path, "utf8"), "hello media");
   p.child.kill();
 });
+
+test("migrateChat sends a migrate_chat notification", async () => {
+  const p = await initialized({ MIGRATE: "1" });
+  const note = p.waitFor((m) => m.method === "migrate_chat");
+  await p.request("send", { session_key: "echo:old:u", chat_id: "old", session_scope: "u", proactive: false, content: "x" }).response;
+  const msg = await note;
+  assert.deepEqual(msg.params, { from_chat_id: "old", to_chat_id: "moved" });
+  assert.equal("id" in msg, false);
+  p.child.kill();
+});

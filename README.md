@@ -47,6 +47,7 @@ defineChannel({
 | `dataDir` | Private writable directory for this plugin |
 | `mediaDir` | Directory where inbound attachments must be stored |
 | `dispatch(msg)` | Hand an inbound message to openbee |
+| `migrateChat(fromChatId, toChatId)` | Tell openbee a chat got a new id, so pending and running tasks follow it |
 | `saveMedia(data, ext)` | Write an attachment into `mediaDir` and return its path |
 | `log.debug/info/warn/error(message, fields?)` | Structured logs in the openbee log |
 
