@@ -4,6 +4,10 @@ Node.js SDK for building openbee channel plugins. It implements the stdio JSON-R
 
 Requires Node.js 20 or newer.
 
+```sh
+npm install @theopenbee/channel-sdk
+```
+
 ## Usage
 
 ```js

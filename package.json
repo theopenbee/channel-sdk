@@ -5,10 +5,12 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/theopenbee/openbee.git",
-    "directory": "sdk/channel-node"
+    "url": "git+https://github.com/theopenbee/channel-sdk.git"
   },
-  "homepage": "https://github.com/theopenbee/openbee/tree/main/sdk/channel-node",
+  "homepage": "https://github.com/theopenbee/channel-sdk#readme",
+  "bugs": {
+    "url": "https://github.com/theopenbee/channel-sdk/issues"
+  },
   "type": "module",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
