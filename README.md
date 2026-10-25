@@ -53,7 +53,8 @@ defineChannel({
 ## Development
 
 ```sh
-pnpm install
-pnpm build
-pnpm test
+npm install
+npm test
 ```
+
+`npm install` also builds `dist/`; run `npm run build` after changing `src/`.
