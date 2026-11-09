@@ -41,7 +41,7 @@ defineChannel({
 | Field | Description |
 |---|---|
 | `channelId` | Channel id from the manifest |
-| `config` | Resolved config from `bee.platforms.<id>` (defaults applied, `enabled` and `bot_name` removed) |
+| `config` | The plugin's saved settings, with defaults applied and `enabled` and `bot_name` removed |
 | `botName` | The configured bot display name |
 | `language` | openbee UI language (`en` or `zh`) |
 | `dataDir` | Private writable directory for this plugin |
