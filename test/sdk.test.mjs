@@ -183,3 +183,15 @@ test("migrateChat sends a migrate_chat notification", async () => {
   assert.equal("id" in msg, false);
   p.child.kill();
 });
+
+test("initialize declares capabilities and send passes buttons through", async () => {
+  const p = startPlugin({ BUTTONS: "1" });
+  const res = await p.request("initialize", initParams()).response;
+  assert.deepEqual(res.result, { protocol_version: 1, capabilities: { buttons: true } });
+  const inbound = p.waitFor((m) => m.method === "inbound");
+  const buttons = [{ label: "Clear", text: "/clear", style: "danger" }, { label: "Cancel", text: "/clear cancel" }];
+  await p.request("send", { session_key: "echo:c:u", chat_id: "c", session_scope: "u", proactive: false, content: "Clear?", buttons }).response;
+  const note = await inbound;
+  assert.deepEqual(JSON.parse(note.params.raw).buttons, buttons);
+  p.child.kill();
+});

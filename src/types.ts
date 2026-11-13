@@ -23,6 +23,12 @@ export interface ReplyTo {
   raw?: string;
 }
 
+export interface Button {
+  label: string;
+  text: string;
+  style?: "danger";
+}
+
 export interface SendRequest {
   session_key: string;
   chat_id: string;
@@ -31,6 +37,7 @@ export interface SendRequest {
   reply_to?: ReplyTo;
   content?: string;
   media?: { path: string; name: string };
+  buttons?: Button[];
 }
 
 export interface SendResult {
@@ -75,7 +82,12 @@ export interface ChannelHandle {
   stop?: () => void | Promise<void>;
 }
 
+export interface ChannelCapabilities {
+  buttons?: boolean;
+}
+
 export interface ChannelDefinition {
+  capabilities?: ChannelCapabilities;
   start(ctx: ChannelContext): Promise<ChannelHandle | void> | ChannelHandle | void;
   send(message: SendRequest, ctx: ChannelContext, signal: AbortSignal): Promise<SendResult | void> | SendResult | void;
 }

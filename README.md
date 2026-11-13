@@ -36,6 +36,10 @@ defineChannel({
 - `console.log`, `console.info` and `console.debug` are redirected to stderr so they cannot corrupt the protocol stream; stderr lines end up in the openbee log.
 - Uncaught exceptions and unhandled rejections are written to stderr and exit with code 1.
 
+## Buttons
+
+Set `capabilities: { buttons: true }` next to `start` and `send` when the platform can show buttons. openbee then adds `buttons` (`{ label, text, style? }`) to some `send` requests, always together with `content`. A click answers for the clicking user: dispatch an inbound message with the button's `text`, the clicker as `sender_id`, the `chat_id` and `session_scope` of that send, and the id of the message that carried the buttons as `message_id`. See [Buttons](https://github.com/theopenbee/openbee/blob/main/docs/channel-plugin-protocol.md#buttons) in the protocol.
+
 ## Context
 
 | Field | Description |

@@ -1,6 +1,7 @@
 import { defineChannel, ConfigError } from "../../dist/index.js";
 
 defineChannel({
+  capabilities: process.env.BUTTONS ? { buttons: true } : undefined,
   async start(ctx) {
     console.log("starting echo plugin");
     if (process.env.FAIL_CONFIG) {

@@ -132,7 +132,8 @@ export function defineChannel(def: ChannelDefinition, io?: ChannelIO): void {
       exit(1);
       return;
     }
-    await peer.respond(id, { protocol_version: PROTOCOL_VERSION });
+    const capabilities = def.capabilities ? { capabilities: def.capabilities } : {};
+    await peer.respond(id, { protocol_version: PROTOCOL_VERSION, ...capabilities });
   };
 
   const handleSend = async (id: MessageId, params: SendRequest) => {
